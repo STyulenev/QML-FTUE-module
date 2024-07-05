@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qml/FTUE/FTUE.qml</file>
+        <file>qml/FTUE/FTUEEffect.qml</file>
+        <file>qml/FTUE/FTUEElement.qml</file>
+        <file>qml/FTUE/FTUEPanel.qml</file>
+        <file>qml/FTUE/FTUEWindow.qml</file>
+        <file>qml/FTUE/qmldir</file>
+    </qresource>
+</RCC>

@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>bug.png</file>
-        <file>FTUE.qml</file>
-    </qresource>
-</RCC>

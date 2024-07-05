@@ -1,47 +1,46 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.5)
 
-project(untitled3 VERSION 0.1 LANGUAGES CXX)
+project(FTUE-qml
+    VERSION 0.1
+    DESCRIPTION "An example of creating a component for the “first-time user experience” in an application with QML"
+    HOMEPAGE_URL "https://github.com/STyulenev/FTUE-qml"
+    LANGUAGES CXX
+)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
-qt_standard_project_setup()
-
-qt_add_executable(appuntitled3
+set(PROJECT_SOURCES
     main.cpp
+    resources.qrc
 )
 
-qt_add_qml_module(appuntitled3
-    URI untitled3
-    VERSION 1.0
-    QML_FILES
-        Main.qml
-        QML_FILES FTUEElement.qml
-        QML_FILES FTUEEffect.qml
-        QML_FILES FTUE.qml
-        QML_FILES FTUEWindow.qml
-        QML_FILES FTUEPanel.qml
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(${PROJECT_NAME}
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+    )
+else()
+    add_executable(${PROJECT_NAME}
+       ${PROJECT_SOURCES}
+    )
+endif()
+
+list(APPEND QML_DIRS "${CMAKE_SOURCE_DIR}/qml")
+list(REMOVE_DUPLICATES QML_DIRS)
+set(QML_IMPORT_PATH "${QML_DIRS}" CACHE STRING "QML import paths")
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Quick
 )
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-set_target_properties(appuntitled3 PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appuntitled3
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
-
-target_link_libraries(appuntitled3
-    PRIVATE Qt6::Quick
-)
-
-include(GNUInstallDirs)
-install(TARGETS appuntitled3
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+set_target_properties(${PROJECT_NAME}
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )

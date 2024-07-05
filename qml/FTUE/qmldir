@@ -1,0 +1,20 @@
+#####################################################
+#
+# First-Time User Experience модуль (https://github.com/STyulenev/FTUE-qml)
+#
+# FTUE компоненты:
+# - FTUE.qml - основной компонент
+# - FTUEEffect.qml - компонент для применения эффекта затемнения
+# - FTUEElement.qml - объект для указания элемента, который нужно описать пользователю
+# - FTUEPanel.qml - панель для переключения компонента или завершения обучения
+# - FTUEWindow.qml - окно для указания текущего компонента
+#
+#####################################################
+
+module FTUE
+
+FTUE        1.0 FTUE.qml
+FTUEEffect  1.0 FTUEEffect.qml
+FTUEElement 1.0 FTUEElement.qml
+FTUEPanel   1.0 FTUEPanel.qml
+FTUEWindow  1.0 FTUEWindow.qml
