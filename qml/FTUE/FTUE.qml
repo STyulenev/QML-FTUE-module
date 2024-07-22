@@ -94,7 +94,8 @@ Rectangle {
                                                 model[internal.currentItem].item.x,
                                                 model[internal.currentItem].item.y);
 
-            panel.location = (point.y < root.height / 2) ? Qt.AlignBottom : Qt.AlignTop;
+            panel.location = point.y < root.height - point.y - model[internal.currentItem].item.height
+                    ? Qt.AlignBottom : Qt.AlignTop; // or (point.y < root.height / 2) ? Qt.AlignBottom : Qt.AlignTop;
             panel.text = model[internal.currentItem].description;
 
             root.changePoint(point.x - root.panelMargin,
