@@ -21,24 +21,34 @@ Item {
     signal stop()
 
     Rectangle {
+        id: background
 
         z: 1
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            margins: 10
+        }
 
         border.color: "black"
         border.width: 3
+
         radius: 5
         color: "black"
         opacity: 0.5
     }
 
     RowLayout {
-        anchors.fill: parent
+        id: controlsLayout
+
+        anchors {
+            fill: parent
+            margins: 20
+        }
 
         z: 2
 
-        spacing: 20
+        spacing: 10
 
         Text {
             id: textArea
@@ -46,17 +56,16 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-
-
+            wrapMode: Text.WordWrap
         }
 
         Button {
-            id: prev
+            id: prevButton
 
             Layout.fillHeight: true
             Layout.preferredWidth: 100
 
-            text: "prev"
+            text: qsTr("prev")
 
             onClicked: {
                 root.prev();
@@ -64,12 +73,12 @@ Item {
         }
 
         Button {
-            id: next
+            id: nextButton
 
             Layout.fillHeight: true
             Layout.preferredWidth: 100
 
-            text: "next"
+            text: qsTr("next")
 
             onClicked: {
                 root.next();
@@ -77,12 +86,12 @@ Item {
         }
 
         Button {
-            id: stop
+            id: stopButton
 
             Layout.fillHeight: true
             Layout.preferredWidth: 100
 
-            text: "stop"
+            text: qsTr("stop")
 
             onClicked: {
                 root.stop();

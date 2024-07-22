@@ -16,6 +16,8 @@ Rectangle {
     required property FTUEEffect effect
     required property string title
 
+    property int panelMargin: 5
+
     Component.onCompleted: {
         root.changePoint.connect(window.changePoint);
         root.start.connect(window.start);
@@ -81,14 +83,16 @@ Rectangle {
             panel.location = (point.y < root.height / 2) ? Qt.AlignBottom : Qt.AlignTop;
             panel.text = model[internal.currentItem].description;
 
-            console.log(panel.location + " " + model[internal.currentItem].description);
+            try {
+                model[internal.currentItem].action();
+            } catch (error) {
+                console.log(error);
+            }
 
-            model[internal.currentItem].action();
-
-            root.changePoint(point.x - 5,
-                             point.y - 5,
-                             model[internal.currentItem].item.height + 10,
-                             model[internal.currentItem].item.width + 10);
+            root.changePoint(point.x - root.panelMargin,
+                             point.y - root.panelMargin,
+                             model[internal.currentItem].item.height + 2 * root.panelMargin,
+                             model[internal.currentItem].item.width + 2 * root.panelMargin);
         }
     }
 

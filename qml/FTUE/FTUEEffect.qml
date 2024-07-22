@@ -11,8 +11,6 @@ Item {
     property real  backgroundOpacity: 0.5
 
     function changePoint(x, y, height, width) {
-        console.log(`x = ${x}, y = ${y}, height = ${height}, width = ${width},`);
-
         topRectangle.height = y;
         bottomRectangle.height = root.height - y - height;
         leftRectangle.width = x;

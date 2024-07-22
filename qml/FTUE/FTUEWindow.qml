@@ -25,7 +25,7 @@ Rectangle {
     }
 
     function start() {
-
+        // code
     }
 
     states: [
