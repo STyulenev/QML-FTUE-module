@@ -57,6 +57,10 @@ ApplicationWindow {
                 }
             }
         ]
+
+        onFinish: {
+            bar.currentIndex = 0;
+        }
     }
 
     // Basic page layout

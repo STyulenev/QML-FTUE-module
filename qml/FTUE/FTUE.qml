@@ -3,8 +3,9 @@ import QtQuick
 Rectangle {
     id: root
 
-    color: "transparent"
     anchors.fill: parent
+
+    color: "transparent"
 
     signal changePoint(int x, int y, int height,int width)
     signal start()
@@ -26,6 +27,11 @@ Rectangle {
         panel.next.connect(internal.increment);
         panel.prev.connect(internal.decrement);
         panel.stop.connect(root.finish);
+        panel.start.connect(function () {
+            panel.status = "Process";
+
+            internal.increment();
+        });
 
         root.changePoint.connect(effect.changePoint);
 
@@ -49,6 +55,7 @@ Rectangle {
             root.changePoint(root.height, root.width, root.height, root.width);
             panel.location = Qt.AlignCenter;
             panel.text = root.title;
+            panel.prevButtonEnabled = false;
         }
 
         function finalization() {
@@ -63,8 +70,6 @@ Rectangle {
             if (internal.currentItem < model.length - 1) {
                 internal.currentItem = internal.currentItem + 1;
                 internal.update();
-            } else {
-                root.finish();
             }
         }
 
@@ -76,6 +81,9 @@ Rectangle {
         }
 
         function update() {
+            panel.nextButtonEnabled = !(internal.currentItem === model.length - 1);
+            panel.prevButtonEnabled = !(internal.currentItem === 0);
+
             try {
                 model[internal.currentItem].action();
             } catch (error) {
@@ -102,5 +110,7 @@ Rectangle {
 
     onFinish: {
         internal.finalization();
+
+        panel.status = "Start";
     }
 }

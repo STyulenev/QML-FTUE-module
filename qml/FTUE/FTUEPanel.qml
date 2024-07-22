@@ -8,9 +8,15 @@ Item {
     z: 2
 
     property bool on: false
-
     property int location: Qt.AlignTop
+    property string status: "Start" // Start or Process
+
     property alias text: textArea.text
+    property alias prevButtonEnabled: prevButton.enabled
+    property alias nextButtonEnabled: nextButton.enabled
+    property alias prevButtonVisible: prevButton.visible
+    property alias nextButtonVisible: nextButton.visible
+    property alias startButtonVisible: startButton.visible
 
     visible: root.on
 
@@ -18,6 +24,7 @@ Item {
 
     signal prev()
     signal next()
+    signal start()
     signal stop()
 
     Rectangle {
@@ -65,6 +72,7 @@ Item {
             Layout.fillHeight: true
             Layout.preferredWidth: 100
 
+            visible: false
             text: qsTr("prev")
 
             onClicked: {
@@ -78,10 +86,24 @@ Item {
             Layout.fillHeight: true
             Layout.preferredWidth: 100
 
+            visible: false
             text: qsTr("next")
 
             onClicked: {
                 root.next();
+            }
+        }
+
+        Button {
+            id: startButton
+
+            Layout.fillHeight: true
+            Layout.preferredWidth: 100
+
+            text: qsTr("start")
+
+            onClicked: {
+                root.start();
             }
         }
 
@@ -97,11 +119,46 @@ Item {
                 root.stop();
             }
         }
+
+        states: [
+            State {
+                when: root.status === "Start"
+
+                PropertyChanges {
+                    target: prevButton
+                    visible: false
+                }
+                PropertyChanges {
+                    target: nextButton
+                    visible: false
+                }
+                PropertyChanges {
+                    target: startButton
+                    visible: true
+                }
+            },
+            State {
+                when: root.status === "Process"
+
+                PropertyChanges {
+                    target: prevButton
+                    visible: true
+                }
+                PropertyChanges {
+                    target: nextButton
+                    visible: true
+                }
+                PropertyChanges {
+                    target: startButton
+                    visible: false
+                }
+            }
+        ]
     }
 
     states: [
         State {
-            when: location === Qt.AlignTop
+            when: root.location === Qt.AlignTop
             AnchorChanges {
                 target: root
 
@@ -116,7 +173,7 @@ Item {
             }
         },
         State {
-            when: location === Qt.AlignBottom
+            when: root.location === Qt.AlignBottom
             AnchorChanges {
                 target: root
 
@@ -131,7 +188,7 @@ Item {
             }
         },
         State {
-            when: location === Qt.AlignCenter
+            when: root.location === Qt.AlignCenter
             AnchorChanges {
                 target: root
 

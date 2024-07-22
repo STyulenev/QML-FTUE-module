@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
 
+        <!-- Основная часть проекта -->
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
 
