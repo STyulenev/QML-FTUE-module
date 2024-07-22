@@ -76,18 +76,18 @@ Rectangle {
         }
 
         function update() {
+            try {
+                model[internal.currentItem].action();
+            } catch (error) {
+                console.log(error);
+            }
+
             var point = root.parent.mapFromItem(model[internal.currentItem].item.parent,
                                                 model[internal.currentItem].item.x,
                                                 model[internal.currentItem].item.y);
 
             panel.location = (point.y < root.height / 2) ? Qt.AlignBottom : Qt.AlignTop;
             panel.text = model[internal.currentItem].description;
-
-            try {
-                model[internal.currentItem].action();
-            } catch (error) {
-                console.log(error);
-            }
 
             root.changePoint(point.x - root.panelMargin,
                              point.y - root.panelMargin,

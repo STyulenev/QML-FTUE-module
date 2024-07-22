@@ -12,6 +12,7 @@ ApplicationWindow {
     visible: true
     title: qsTr("First-time user experience module")
 
+    // FTUE
     FTUE.FTUE {
         id: ftue
         z: 2
@@ -35,64 +36,106 @@ ApplicationWindow {
                 item: button1
                 description: qsTr("This is button 1. This button is necessary to turn on the user manual when pressed.")
                 action: () => {
-                    console.log("FTUEElement - button1")
+                    console.log("FTUEElement - button1");
+                    bar.currentIndex = 0;
                 }
             },
             FTUE.FTUEElement {
                 item: button2
                 description: qsTr("This is button 2. This button is necessary to output the log “This is button 2” to the console when clicked.")
                 action: () => {
-                    console.log("FTUEElement - button2")
+                    console.log("FTUEElement - button2");
+                    bar.currentIndex = 0;
                 }
             },
             FTUE.FTUEElement {
                 item: label
                 description: qsTr("This is label. Just the label.")
                 action: () => {
-                    console.log("FTUEElement - label")
+                    console.log("FTUEElement - label");
+                    bar.currentIndex = 1;
                 }
             }
         ]
     }
 
-    ColumnLayout { // RowLayout ColumnLayout
-        anchors.centerIn: parent
+    // Basic page layout
+    TabBar {
+        id: bar
 
-        spacing: 20
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+        }
 
-        Button {
-            id: button1
+        TabButton {
+            text: qsTr("First page")
+        }
+        TabButton {
+            text: qsTr("Second page")
+        }
+    }
 
-            Layout.preferredHeight: 50
-            Layout.preferredWidth: 100
+    StackLayout {
+        anchors {
+            top: bar.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
 
-            text: qsTr("Start FTUE")
+        currentIndex: bar.currentIndex
 
-            onClicked: {
-                ftue.start();
+        Item {
+            id: firstPage
+
+            ColumnLayout { // or RowLayout
+                anchors.centerIn: parent
+
+                spacing: 20
+
+                Button {
+                    id: button1
+
+                    Layout.preferredHeight: 50
+                    Layout.preferredWidth: 100
+
+                    text: qsTr("Start FTUE")
+
+                    onClicked: {
+                        ftue.start();
+                    }
+                }
+
+                Button {
+                    id: button2
+
+                    Layout.preferredHeight: 200
+                    Layout.preferredWidth: 200
+
+                    text: qsTr("Some button 2")
+
+                    onClicked: {
+                        console.log("This is button 2")
+                    }
+                }
             }
         }
 
-        Button {
-            id: button2
+        Item {
+            id: secondPage
 
-            Layout.preferredHeight: 200
-            Layout.preferredWidth: 200
+            Label {
+                id: label
 
-            text: qsTr("Some button 2")
+                anchors.centerIn: parent
 
-            onClicked: {
-                console.log("This is button 2")
+                height: 50
+                width: 100
+
+                text: qsTr("Some label")
             }
-        }
-
-        Label {
-            id: label
-
-            Layout.preferredHeight: 50
-            Layout.preferredWidth: 100
-
-            text: qsTr("Some label")
         }
     }
 }
