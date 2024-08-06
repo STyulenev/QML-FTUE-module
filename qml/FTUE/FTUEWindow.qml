@@ -34,14 +34,14 @@ Rectangle {
             PropertyChanges {
                 target: root
                 visible: true
-            }
-        },
+            } // PropertyChanges
+        }, // State
         State {
             when: !root.on
             PropertyChanges {
                 target: root
                 visible: false
-            }
-        }
+            } // PropertyChanges
+        } // State
     ]
-}
+} // Rectangle

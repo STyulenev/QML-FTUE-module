@@ -43,7 +43,7 @@ Item {
         radius: 5
         color: "black"
         opacity: 0.5
-    }
+    } // Rectangle
 
     RowLayout {
         id: controlsLayout
@@ -64,7 +64,7 @@ Item {
             Layout.fillWidth: true
 
             wrapMode: Text.WordWrap
-        }
+        }  // Text
 
         Button {
             id: prevButton
@@ -78,7 +78,7 @@ Item {
             onClicked: {
                 root.prev();
             }
-        }
+        } // Button
 
         Button {
             id: nextButton
@@ -92,7 +92,7 @@ Item {
             onClicked: {
                 root.next();
             }
-        }
+        } // Button
 
         Button {
             id: startButton
@@ -105,7 +105,7 @@ Item {
             onClicked: {
                 root.start();
             }
-        }
+        } // Button
 
         Button {
             id: stopButton
@@ -118,7 +118,7 @@ Item {
             onClicked: {
                 root.stop();
             }
-        }
+        } // Button
 
         states: [
             State {
@@ -127,34 +127,34 @@ Item {
                 PropertyChanges {
                     target: prevButton
                     visible: false
-                }
+                } // PropertyChanges
                 PropertyChanges {
                     target: nextButton
                     visible: false
-                }
+                } // PropertyChanges
                 PropertyChanges {
                     target: startButton
                     visible: true
-                }
-            },
+                } // PropertyChanges
+            }, // State
             State {
                 when: root.status === "Process"
 
                 PropertyChanges {
                     target: prevButton
                     visible: true
-                }
+                } // PropertyChanges
                 PropertyChanges {
                     target: nextButton
                     visible: true
-                }
+                } // PropertyChanges
                 PropertyChanges {
                     target: startButton
                     visible: false
-                }
-            }
+                } // PropertyChanges
+            } // State
         ]
-    }
+    } // RowLayout
 
     states: [
         State {
@@ -170,8 +170,8 @@ Item {
                     horizontalCenter: undefined
                     verticalCenter: undefined
                 }
-            }
-        },
+            } // AnchorChanges
+        }, // State
         State {
             when: root.location === Qt.AlignBottom
             AnchorChanges {
@@ -185,8 +185,8 @@ Item {
                     horizontalCenter: undefined
                     verticalCenter: undefined
                 }
-            }
-        },
+            } // AnchorChanges
+        }, // State
         State {
             when: root.location === Qt.AlignCenter
             AnchorChanges {
@@ -200,7 +200,7 @@ Item {
                     horizontalCenter: parent.horizontalCenter
                     verticalCenter: parent.verticalCenter
                 }
-            }
-        }
+            } // AnchorChanges
+        } // State
     ]
-}
+} // Item

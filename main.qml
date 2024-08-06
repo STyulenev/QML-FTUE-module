@@ -21,15 +21,15 @@ ApplicationWindow {
 
         window: FTUE.FTUEWindow {
             // ...
-        }
+        } // FTUE.FTUEWindow
 
         panel: FTUE.FTUEPanel {
             // ...
-        }
+        } // FTUE.FTUEPanel
 
         effect: FTUE.FTUEEffect {
             // ...
-        }
+        } // FTUE.FTUEEffect
 
         model: [
             FTUE.FTUEElement {
@@ -39,7 +39,7 @@ ApplicationWindow {
                     console.log("FTUEElement - button1");
                     bar.currentIndex = 0;
                 }
-            },
+            }, // FTUE.FTUEElement
             FTUE.FTUEElement {
                 item: button2
                 description: qsTr("This is button 2. This button is necessary to output the log “This is button 2” to the console when clicked.")
@@ -47,7 +47,7 @@ ApplicationWindow {
                     console.log("FTUEElement - button2");
                     bar.currentIndex = 0;
                 }
-            },
+            }, // FTUE.FTUEElement
             FTUE.FTUEElement {
                 item: label
                 description: qsTr("This is label. Just the label.")
@@ -55,13 +55,13 @@ ApplicationWindow {
                     console.log("FTUEElement - label");
                     bar.currentIndex = 1;
                 }
-            }
+            } // FTUE.FTUEElement
         ]
 
         onFinish: {
             bar.currentIndex = 0;
         }
-    }
+    } // FTUE.FTUE
 
     // Basic page layout
     TabBar {
@@ -75,13 +75,15 @@ ApplicationWindow {
 
         TabButton {
             text: qsTr("First page")
-        }
+        } // TabButton
         TabButton {
             text: qsTr("Second page")
-        }
-    }
+        } // TabButton
+    } // TabBar
 
     StackLayout {
+        id: stackLayout
+
         anchors {
             top: bar.bottom
             left: parent.left
@@ -110,7 +112,7 @@ ApplicationWindow {
                     onClicked: {
                         ftue.start();
                     }
-                }
+                } // Button
 
                 Button {
                     id: button2
@@ -123,9 +125,9 @@ ApplicationWindow {
                     onClicked: {
                         console.log("This is button 2")
                     }
-                }
-            }
-        }
+                } // Button
+            } // ColumnLayout
+        } // Item
 
         Item {
             id: secondPage
@@ -139,7 +141,7 @@ ApplicationWindow {
                 width: 100
 
                 text: qsTr("Some label")
-            }
-        }
-    }
-}
+            } // Label
+        } // Item
+    } // StackLayout
+} // ApplicationWindow

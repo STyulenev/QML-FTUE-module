@@ -26,7 +26,11 @@ Item {
 
         color: root.backgroundColor
         opacity: root.backgroundOpacity
-    }
+
+        MouseArea {
+            anchors.fill: parent
+        } // MouseArea
+    } // Rectangle
 
     Rectangle {
         id: bottomRectangle
@@ -37,7 +41,11 @@ Item {
 
         color: root.backgroundColor
         opacity: root.backgroundOpacity
-    }
+
+        MouseArea {
+            anchors.fill: parent
+        } // MouseArea
+    } // Rectangle
 
     Rectangle {
         id: leftRectangle
@@ -48,7 +56,11 @@ Item {
 
         color: root.backgroundColor
         opacity: root.backgroundOpacity
-    }
+
+        MouseArea {
+            anchors.fill: parent
+        } // MouseArea
+    } // Rectangle
 
     Rectangle {
         id: rightRectangle
@@ -59,7 +71,11 @@ Item {
 
         color: root.backgroundColor
         opacity: root.backgroundOpacity
-    }
+
+        MouseArea {
+            anchors.fill: parent
+        } // MouseArea
+    } // Rectangle
 
     states: [
         State {
@@ -67,14 +83,14 @@ Item {
             PropertyChanges {
                 target: root
                 visible: true
-            }
-        },
+            } // PropertyChanges
+        }, // State
         State {
             when: !root.on
             PropertyChanges {
                 target: root
                 visible: false
-            }
-        }
+            } // PropertyChanges
+        } // State
     ]
-}
+} // Item

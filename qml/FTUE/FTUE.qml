@@ -103,7 +103,7 @@ Rectangle {
                              model[internal.currentItem].item.height + 2 * root.panelMargin,
                              model[internal.currentItem].item.width + 2 * root.panelMargin);
         }
-    }
+    } // QtObject
 
     onStart: {
         internal.initialization();
@@ -114,4 +114,4 @@ Rectangle {
 
         panel.status = "Start";
     }
-}
+} // Rectangle
