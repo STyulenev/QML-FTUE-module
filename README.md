@@ -1,11 +1,11 @@
-# FTUE-qml
+# QML-FTUE-module
 
 ## Описание
 
 Пример QML-компонента для [First-time user experience (FTUE)](https://en.wikipedia.org/wiki/First-time_user_experience "FTUE"). Данный модуль предназначен для обучения пользователя 
 работе с компонентами приложения.
 
-![alt text](doc/FTUE-qml.gif)
+![alt text](doc/QML-FTUE-module.gif)
 
 ## Структура проекта
 

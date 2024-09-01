@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(FTUE-qml
+project(QML-FTUE-module
     VERSION 0.1
     DESCRIPTION "An example of creating a component for the “first-time user experience” in an application with QML"
     HOMEPAGE_URL "https://github.com/STyulenev/FTUE-qml"
